@@ -189,9 +189,9 @@ function promptPassword(callback) {
         <button id="stopRetryBtn" style="width:49%;padding:8px;background:#dc3545;color:#fff;border:none;float:right;">Stop</button>
         <div style="clear:both;"></div>
         <label>Target Seconds:</label>
-        <input id="targetSeconds" type="number" min="0" max="59" value="59" style="width:100%;padding:4px;margin-bottom:5px;border:1px solid #007cff;border-radius:6px;">
+        <input id="targetSeconds" type="number" min="0" max="59" value="58" style="width:100%;padding:4px;margin-bottom:5px;border:1px solid #007cff;border-radius:6px;">
         <label>Target Milliseconds:</label>
-        <input id="targetMilliseconds" type="number" min="0" max="999" value="500" style="width:100%;padding:4px;margin-bottom:5px;border:1px solid #007cff;border-radius:6px;">
+        <input id="targetMilliseconds" type="number" min="0" max="999" value="750" style="width:100%;padding:4px;margin-bottom:5px;border:1px solid #007cff;border-radius:6px;">
         <p id="retries" style="text-align:center;color:#dc3545;font-weight:bold;margin-top:8px;font-size:16px;">Attempts: 0</p>
     `;
 
