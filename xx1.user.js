@@ -332,7 +332,7 @@ function promptPassword(callback) {
     function fillInputs(callback) {
         const cityField = document.querySelector('input[placeholder*="city of entry"]');
         if (cityField) {
-            cityField.value = 'Rome';
+            cityField.value = 'Italy';
             cityField.dispatchEvent(new Event('input', { bubbles: true }));
             cityField.dispatchEvent(new Event('change', { bubbles: true })); // Add change event
         } else {
