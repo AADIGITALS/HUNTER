@@ -11,7 +11,7 @@
 (function () {
     'use strict';
 
-const PASSWORD = '';
+const PASSWORD = '****';
 
 function promptPassword(callback) {
     const overlay = document.createElement('div');
