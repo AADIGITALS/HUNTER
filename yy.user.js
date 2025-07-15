@@ -118,15 +118,68 @@ function promptPassword(callback) {
         startSuccessCheckLoop(); // Start checking for success condition
     }
 
-    function createClock() {
-        const clockDiv = document.createElement('div');
-        clockDiv.style.cssText = 'position:fixed;top:570px;right:20px;width:280px;padding:8px;background:#fff;border:2px solid #007bff;z-index:9999;border-radius:6px;font-size:25px;color:#007bff;text-align:center';
-        document.body.appendChild(clockDiv);
-        setInterval(() => {
-            const now = new Date();
-            clockDiv.innerText = now.toLocaleTimeString() + '.' + now.getMilliseconds().toString().padStart(3, '0');
-        }, 50);
+    function initScript() {
+        createClock();
+        createControlPanel();
+        waitForFieldsProperly();
+        // Start observing for the alert button after the initial setup
+        observeAlertButton();
+        startSuccessCheckLoop(); // Start checking for success condition
     }
+
+   function createClock() {
+    const clockDiv = document.createElement('div');
+    clockDiv.style.cssText = `
+        position:fixed;
+        top:570px;
+        right:20px;
+        width:280px;
+        padding:8px;
+        background:#fff;
+        border:2px solid #007bff;
+        z-index:9999;
+        border-radius:6px;
+        font-size:25px;
+        color:#007bff;
+        text-align:center;
+        cursor:move;
+    `;
+    document.body.appendChild(clockDiv);
+
+    setInterval(() => {
+        const now = new Date();
+        clockDiv.innerText =
+            now.toLocaleTimeString() + '.' +
+            now.getMilliseconds().toString().padStart(3, '0');
+    }, 50);
+
+    // Drag logic for clock
+    let isDragging = false;
+    let offsetX = 0, offsetY = 0;
+
+    clockDiv.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - clockDiv.offsetLeft;
+        offsetY = e.clientY - clockDiv.offsetTop;
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', stopDrag, { once: true });
+    });
+
+    function onMouseMove(e) {
+        if (isDragging) {
+            clockDiv.style.left = `${e.clientX - offsetX}px`;
+            clockDiv.style.top = `${e.clientY - offsetY}px`;
+            clockDiv.style.right = 'auto'; // prevent conflicting right value
+            clockDiv.style.bottom = 'auto'; // in case you ever change bottom
+        }
+    }
+
+    function stopDrag() {
+        isDragging = false;
+        document.removeEventListener('mousemove', onMouseMove);
+    }
+}
 
  function createControlPanel() {
     const windowDiv = document.createElement('div');
