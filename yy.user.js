@@ -96,6 +96,8 @@ function promptPassword(callback) {
         'Re-entry Visa (D)',
         'Family Reunion Visa for parents, (D)',
         'Employment Visa (D)',
+        'Employment (record number 2025)'
+        
 
     ];
 
