@@ -250,9 +250,26 @@ function promptPassword(callback) {
         <p id="retries" style="text-align:center;color:#dc3545;font-weight:bold;margin-top:8px;font-size:16px;">Attempts: 0</p>
     `;
 
-    windowDiv.appendChild(header);
+        windowDiv.appendChild(header);
     windowDiv.appendChild(content);
     document.body.appendChild(windowDiv);
+// Find the HUNTER span inside the header
+const hunterSpan = header.querySelector('span');
+
+// Define the toggle function
+function togglePanelMinimize() {
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+    } else {
+        content.style.display = 'none';
+    }
+}
+
+// Attach the click event to HUNTER
+hunterSpan.addEventListener('click', () => {
+    togglePanelMinimize();
+});
+
 
     // Restore previous selections
     document.getElementById('center').value = getSelection('center') || 'mat-option-0';
